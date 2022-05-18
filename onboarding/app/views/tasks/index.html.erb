@@ -1,0 +1,48 @@
+
+
+<div class="flex flex-wrap items-center justify-between">
+  <div class="w-full lg:w-1/2">
+    <h1 class="text-2xl">Tasks</h1>
+  </div>
+
+  <div class="w-full lg:w-1/2 lg:text-right">
+    <%= link_to new_task_path, class: 'btn btn-default' do %>
+      Add New Task
+    <% end %>
+  </div>
+</div>
+
+<table class="w-full max-w-full mb-1 bg-transparent border-collapse">
+  <thead>
+    <tr>
+      
+        <th class="border-2">Name</th>
+      
+
+              <th class="border-2">Content</th>
+            
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tasks.each do |task| %>
+      <%= content_tag :tr, id: dom_id(task), class: dom_class(task) do %>
+        
+          <td class="border-2"><%= link_to task.name, task, class: "btn btn-link" %></td>
+        
+
+                  <td class="border-2">
+            <% if Task.reflect_on_all_associations(:belongs_to).map{|e| e.name}.include?(:content) %>
+            <%= link_to task.try(:content).short_name, task.try(:content),class: "btn btn-link"  %>
+            <% else %>
+            <%= task.content %>
+            <% end %>
+          </td>
+        
+        
+        <% end %>
+        <% end %>
+      </tbody>
+    </table>
+
+
