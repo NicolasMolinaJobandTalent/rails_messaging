@@ -17,5 +17,5 @@
    * bundle install
    * npm i
    * docker-compose up -d
-   * Also run pending migrations from client
+   * docker-compose run onboarding rake db:migrate | docker-compose run recruitment rake db:migrate
    * screencast link : https://share.vidyard.com/watch/e7FNGdx2cxiSTgHxcVFimb?
